@@ -1,0 +1,34 @@
+{
+  "name": "express-starter",
+  "description": "Yet another express starter kit. Maintained for and at my convenience, but suggestions are always welcome. Use it if it's useful to you.",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "3.x",
+    "async": "0.x",
+    "bcrypt": "0.x",
+    "connect-flash": "0.x",
+    "hbs": "2.x",
+    "handlebars-helpers": "0.x",
+    "migrate": "0.x",
+    "mongodb": "1.x",
+    "mongoose": "3.x",
+    "passport": "0.x",
+    "passport-http": "0.x",
+    "passport-local": "0.x",
+    "virgen-acl": "0.x"
+  },
+  "devDependencies": {
+    "assert": "1.x",
+    "cheerio": "0.x",
+    "grunt": "0.x",
+    "grunt-mocha-test": "0.x",
+    "mocha": "1.x",
+    "pow-mongoose-fixtures": "~0.x",
+    "should": "3.x",
+    "sinon": "1.x",
+    "supertest": "~0.x",
+    "passport-stub-js": "~0.x",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

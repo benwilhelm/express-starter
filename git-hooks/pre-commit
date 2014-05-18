@@ -1,0 +1,15 @@
+# Check for debugging and other stuff that shouldn't be committed
+  FILES_PATTERN='\.(js|coffee)(\..+)?$'
+  FORBIDDEN='console.log'
+  git diff --cached --name-only | \
+    grep -E $FILES_PATTERN | \
+    GREP_COLOR='37;41' xargs grep --color --with-filename -n $FORBIDDEN && echo "\nCOMMIT REJECTED Found '$FORBIDDEN' references. \nPlease remove them before committing\n" && exit 1
+
+
+
+# Run Tests
+  make test
+  RESULT=$?
+  [ $RESULT -ne 0 ] && exit 1
+
+exit 0

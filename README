@@ -1,0 +1,20 @@
+BenWilhelm's Express Starter
+============================
+
+This is a bit of boilerplate for building apps in Node/Express/MongoDB. This is
+an attempt to distil some of my existing practices into a reusable starting
+place and as such is an evolving project. built and maintained for my own
+convenience, and released under the MIT License. Use it if it's convenient for
+you, and feel free to offer suggestions or patches.
+
+The starter kit currently includes:
+----------------------------------
+
+* Express
+* Basic authenticated user model
+* Authentication with [Passport](http://passportjs.org), including middleware
+  for Basic, Local, and HMAC strategies
+* Optional middleware to either require SSL or simply redirect to SSL
+* Grunt tasks to test and lint code
+* Test stack using mocha and
+  [mongoose-fixtures](https://github.com/powmedia/mongoose-fixtures)
