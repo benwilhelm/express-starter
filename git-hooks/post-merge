@@ -2,4 +2,4 @@
 npm prune
 npm install
 migrate
-make test
+grunt test

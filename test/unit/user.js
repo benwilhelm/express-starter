@@ -135,7 +135,7 @@ describe("Unit-User", function(){
         assert.equal(u.loginAttempts, 9, 'verify starting loginAttempts 9') ;
         u.incLoginAttempts(function(){
           User.findById(u._id, function(err,u){
-            if (err) console.log(err);
+            if (err) console.error(err);
             assert.equal(u.loginAttempts, 10, 'loginAttempts should be 10') ;
             var secsMin = 2 * 60 * 60 * 1000 - 100 ;
             var secsMax = 2 * 60 * 60 * 1000 + 100 ;
