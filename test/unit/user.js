@@ -41,7 +41,7 @@ describe("Unit-User", function(){
   before(function(done){
     async.series([
       function(cb){ helpers.emptyCollections(cb); },
-      function(cb){ fixtures.load('./fixtures/users.js', db, cb); },
+      function(cb){ fixtures.load(__dirname + '/../fixtures/users.js', db, cb); },
       function(cb){
         User.findOne({email:'user1@example.com'}, function(err, u){
           user1 = u;
