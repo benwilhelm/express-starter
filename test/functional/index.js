@@ -110,4 +110,44 @@ describe("Integration - Index", function(){
     });
   });
   
+  
+  describe("/credentials", function(){
+    it("should require username/password for GET request",function(done){
+      request(app)
+      .get('/credentials')
+      .end(function(err,res){
+        assert.equal(res.status,'401') ;
+        assert.equal(res.text,'Unauthorized') ;
+        done() ;
+      }) ;
+    }) ;
+  
+    it("should require *valid* u/p compbo for GET request", function(done){
+      request(app)
+      .get('/credentials')
+      .auth('user321@example.com','password123')
+      .end(function(err,res){
+        assert.equal(res.status,'401') ;
+        assert.equal(res.text,'Unauthorized') ;
+        done() ;
+      }) ;
+    }) ;
+
+    it("should return api key/secret with valid u/p", function(done){
+      request(app)
+      .get('/credentials')
+      .auth('user1@example.com','password123')
+      .end(function(err,res){
+        if (err) console.error(err) ;      
+        assert.equal(err,null) ;
+
+        assert.equal(res.body.payload.err, null) ;
+        assert.equal(res.body.payload.err_msg, null) ;
+        res.body.payload.apiKey.should.eql(suite.user1.apiKey) ;
+        res.body.payload.apiSecret.should.eql(suite.user1.apiSecret) ;
+        done() ;
+      });
+    }) ;
+  });
+  
 });

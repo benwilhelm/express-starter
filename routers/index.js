@@ -1,8 +1,9 @@
 var app = require('../app')
   , appRoot = app.get('appRoot')
-  , express = require('express')
-  , router = express.Router()
   , authStrategies = require(appRoot + '/middleware/auth-strategies')
+  , express = require('express')
+  , h = require(appRoot + '/lib/helpers')
+  , router = express.Router()
   , passport = authStrategies.passport
   ;
 
@@ -32,6 +33,16 @@ router.route('/logout')
 .get(function(req, res, next){
   req.logout();
   res.redirect('login');
+});
+
+router.route("/credentials")
+.get(authStrategies.basic.authenticate, function(req, res, next){
+  res.type('application/json') ;
+  var resp = h.normalResponse({
+    apiKey: req.user.apiKey,
+    apiSecret: req.user.apiSecret
+  }) ;
+  res.send(resp) ;
 });
 
 module.exports = router;
