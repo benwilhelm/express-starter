@@ -8,7 +8,7 @@
 
 
 # Run Tests
-  make test
+  grunt test
   RESULT=$?
   [ $RESULT -ne 0 ] && exit 1
 
