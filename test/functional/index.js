@@ -6,6 +6,7 @@ var app = require('../../app')
   , fixtures = require('pow-mongoose-fixtures')
   , helpers = require('../test-helpers')
   , passportStub = require('passport-stub')
+  , request = require('supertest')
   , should = require('should')
   , store = require('../../lib/db')
   ,   db = store.database
@@ -39,8 +40,74 @@ describe("Integration - Index", function(){
   describe("/login", function(){
   
     it("should log user in when POSTed with correct credentials", function(done){
-      assert.ok(false, 'write this test');
-      done();
+      var data = {
+        email: 'user1@example.com',
+        password: 'password123'
+      };
+      
+      request(app)
+      .post('/login')
+      .send(data)
+      .end(function(err,res){
+        if (err) console.error(err);
+        assert.equal(err, null, "should be no error on submit");
+        res.error.should.eql(false,"response should not contain an error");
+        res.headers.location.should.match(/^\/users\/[\w\d]{24}$/, 'should redirect to account page');
+        res.status.should.eql(302, 'should send 302');
+        done();
+      });
+    });
+    
+    it("should not log user in and should redirect to itself with bad email", function(done){
+      var data = {
+        email: 'wrong@example.com',
+        password: 'password123'
+      };
+      request(app)
+      .post('/login')
+      .send(data)
+      .end(function(err,res){
+        if (err) console.error(err);
+        assert.equal(err, null, "should be no server error on submit") ;
+        res.error.should.eql(false, "should not return an error") ;
+        assert.equal(res.headers.location,'/login','Should redirect to /login') ;
+        done();
+      });
+    });
+    
+    it("should not log user in and should redirect to itself with bad password", function(done){
+      var data = {
+        email: 'user1@example.com',
+        password: 'badpassword'
+      };
+      request(app)
+      .post('/login')
+      .send(data)
+      .end(function(err,res){
+        if (err) console.error(err);
+        assert.equal(err, null, "should be no server error on submit") ;
+        res.error.should.eql(false, "should not return an error") ;
+        assert.equal(res.headers.location,'/login','Should redirect to /login') ;
+        done();
+      });
+    });
+    
+    it("should not log user in and should redirect to itself with bad email and password", function(done){
+      var data = {
+        email: 'wrong@example.com',
+        password: 'badpassword'
+      };
+      request(app)
+      .post('/login')
+      .send(data)
+      .end(function(err,res){
+        if (err) console.error(err);
+        assert.equal(err, null, "should be no server error on submit") ;
+        res.error.should.eql(false, "should not return an error") ;
+        assert.equal(res.headers.location,'/login','Should redirect to /login') ;
+        done();
+      });
     });
   });
+  
 });

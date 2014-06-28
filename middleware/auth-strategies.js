@@ -16,13 +16,7 @@ passport.deserializeUser(function(id, done){
 
 
   
-passport.use(new BasicStrategy(
-  function(username,password,done){
-    User.getAuthenticated(username, password, function(err,user){
-      done(err,user) ;
-    }) ;
-  }
-)) ;
+passport.use(new BasicStrategy(User.getAuthenticated)) ;
 
 passport.use(new LocalStrategy(
   { usernameField:'email' },

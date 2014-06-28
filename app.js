@@ -22,6 +22,11 @@ app.engine('html', hbs.__express) ;
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(cookieParser());
+app.use(require('./middleware/myLocals'));
+
+if (app.get('env') === 'development') {
+  app.use(require('morgan')('dev'));
+}
 
 // REGENERATE THIS SECRET!
 app.use(session({secret:'t8f8vR89z88uIW1SbB6Bl9doH0JQa75d03mp'}));
@@ -38,8 +43,7 @@ app.locals.siteTitle = "Site Name";
 app.use(require(__dirname + '/routers/index'));
 app.use(require(__dirname + '/routers/users'));
 
-
-if (process.env.NODE_ENV === 'test') {
+if (app.get('env') === 'test') {
   process.env.PORT = 3001 ;
 }
 

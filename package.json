@@ -20,7 +20,8 @@
     "virgen-acl": "0.x",
     "cookie-parser": "^1.1.0",
     "express-session": "^1.2.0",
-    "connect-modrewrite": "^0.7.5"
+    "connect-modrewrite": "^0.7.5",
+    "morgan": "^1.1.1"
   },
   "devDependencies": {
     "assert": "1.x",
