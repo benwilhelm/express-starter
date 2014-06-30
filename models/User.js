@@ -5,7 +5,7 @@ var store = require('../lib/db')
   , async = require('async')
   , bcrypt = require('bcrypt')
   , crypto = require('crypto')
-  , SALT_WORK_FACTOR = 4
+  , SALT_WORK_FACTOR = 6
   , MAX_LOGIN_ATTEMPTS = 10
   , LOCK_TIME = 2 * 60 * 60 * 1000 // 2 hours
   ;
@@ -83,7 +83,7 @@ UserSchema.pre('save', function(next){
       
       // override the cleartext password with the hashed one
       user.password = hash ;
-      next() ;
+      return next() ;
     }) ;
   }) ;
   
@@ -115,11 +115,11 @@ UserSchema.path('password').validate(function(value){
 }, "Your password must be at least 8 characters long");
 
 UserSchema.path('apiKey').validate(function(value){
-  return /^[\d\w]{24}$/.test(value) ;
+  return /^[A-Fa-f0-9]{24}$/.test(value) ;
 }, 'API Secret should be generated as a 24-character string (12 hex values)');
 
 UserSchema.path('apiSecret').validate(function(value){
-  return /^[\d\w]{48}$/.test(value) ;
+  return /^[A-Fa-f0-9]{48}$/.test(value) ;
 }, 'API Secret should be generated as a 48-character string (24 hex values)');
 
 

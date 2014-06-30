@@ -9,7 +9,7 @@ var app = require('../app')
 
 router.route('/')
 .get(function(req, res, next){
-  res.locals.pageTitle = "Home";
+  res.locals.pageTitle = "Home".format();
   res.render("index", {layout: "layouts/site"});
 });
 

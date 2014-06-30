@@ -63,8 +63,8 @@ describe("Unit-User", function(){
       var user = new User() ;
       user.resetApiCredentials(function(err, creds){
         assert.equal(err,null) ;
-        assert.ok( /^[\w\d]{24}$/.test(creds.apiKey) ) ;
-        assert.ok( /^[\w\d]{48}$/.test(creds.apiSecret) ) ;
+        assert.ok( /^[A-Fa-f0-9]{24}$/.test(creds.apiKey) ) ;
+        assert.ok( /^[A-Fa-f0-9]{48}$/.test(creds.apiSecret) ) ;
         creds.apiKey.should.eql(user.apiKey) ;
         creds.apiSecret.should.eql(user.apiSecret) ;
         done() ;
