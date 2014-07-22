@@ -1,7 +1,7 @@
 var passport = require('passport')
   , BasicStrategy = require('passport-http').BasicStrategy
   , LocalStrategy = require('passport-local').Strategy
-  , User = require('../models/User')
+  , User = require('authrizr').User.Model
   ;
 
 passport.serializeUser(function(user, done) {
@@ -64,8 +64,7 @@ var exports = {
   // Hmac Strategy (does not use passport)
   hmac: {
     authenticate: function(req,res,next) {
-      var User = require('../models/User')
-      , header=req.headers.authorization || ''         // get the header
+      var header=req.headers.authorization || ''         // get the header
       , token=header.split(/\s+/).pop() || ''          // and the encoded auth token
       , auth=new Buffer(token, 'base64').toString()    // convert from base64
       , parts=auth.split(/:/)                          // split on colon

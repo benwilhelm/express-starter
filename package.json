@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "express": "4.0.x",
+    "authrizr": "git://github.com/benwilhelm/node-authrizr.git#master",
     "async": "0.x",
     "bcrypt": "0.x",
     "body-parser": "1.0.x",
@@ -13,7 +14,7 @@
     "method-override": "1.0.x",
     "migrate": "0.x",
     "mongodb": "1.x",
-    "mongoose": "3.x",
+    "mongoose": "^3.8.0",
     "passport": "0.x",
     "passport-http": "0.x",
     "passport-local": "0.x",

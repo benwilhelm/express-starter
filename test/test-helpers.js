@@ -3,7 +3,7 @@ var appRoot = ".."
   , fixtures = require('pow-mongoose-fixtures')
   , store = require('../lib/db')
   ,   db = store.database
-  , User = require('../models/User')
+  , User = require('authrizr').User.Model
   ;
 
 module.exports = {

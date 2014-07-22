@@ -26,7 +26,11 @@ if (app.get('env') === 'development') {
 }
 
 // REGENERATE THIS SECRET!
-app.use(session({secret:'t8f8vR89z88uIW1SbB6Bl9doH0JQa75d03mp'}));
+app.use(session({
+  secret:'t8f8vR89z88uIW1SbB6Bl9doH0JQa75d03mp',
+  saveUninitialized: true,
+  resave: true
+}));
 
 app.use(flash());
 app.use(passport.initialize()) ;

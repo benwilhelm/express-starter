@@ -10,7 +10,7 @@ var app = require('../../app')
   , should = require('should')
   , store = require('../../lib/db')
   ,   db = store.database
-  , User = require('../../models/User')
+  , User = require('authrizr').User.Model
   , testData = {
       foo: 'bar',
       bif: 'baz'
