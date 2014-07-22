@@ -1,5 +1,10 @@
 #!/bin/bash
 npm prune
 npm install
-migrate
+npm update authrizr
+
+# -- requires config file and possibly grunt task
+# -- see https://www.npmjs.org/package/mongoose-migrate
+# migrate
+
 grunt test
